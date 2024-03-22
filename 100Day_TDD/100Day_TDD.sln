@@ -9,17 +9,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{1F643DB0-E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{BDD9CCA2-318D-4D09-8F95-5980993D127F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductPro.Domain", "ProductPro.Domain\ProductPro.Domain.csproj", "{356463F3-FEF4-4FF1-8BDD-39C78EC486F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductPro.Domain", "ProductPro.Domain\ProductPro.Domain.csproj", "{356463F3-FEF4-4FF1-8BDD-39C78EC486F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectPro.Application", "ProjectPro.Application\ProjectPro.Application.csproj", "{9547799A-D4EF-48C3-9079-43B014562120}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectPro.Application", "ProjectPro.Application\ProjectPro.Application.csproj", "{9547799A-D4EF-48C3-9079-43B014562120}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductProd.Infrastructure", "ProductProd.Infrastructure\ProductProd.Infrastructure.csproj", "{EBEC0A27-D50E-433E-AE74-7E4BDA104995}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductProd.Infrastructure", "ProductProd.Infrastructure\ProductProd.Infrastructure.csproj", "{EBEC0A27-D50E-433E-AE74-7E4BDA104995}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductPro.API", "ProductPro.API\ProductPro.API.csproj", "{4122C960-DF95-4489-9214-7034BE920C42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductPro.API", "ProductPro.API\ProductPro.API.csproj", "{4122C960-DF95-4489-9214-7034BE920C42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductPro.Shared", "ProductPro.Shared\ProductPro.Shared.csproj", "{CC1F9E47-A057-430D-8AB4-074026172079}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductPro.Shared", "ProductPro.Shared\ProductPro.Shared.csproj", "{CC1F9E47-A057-430D-8AB4-074026172079}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductPro.UnitTest", "ProductPro.UnitTest\ProductPro.UnitTest.csproj", "{EB55CC7C-6A39-44EE-9A50-928BC9B8A5CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductPro.Application.Test", "ProductPro.UnitTest\ProductPro.Application.Test.csproj", "{EB55CC7C-6A39-44EE-9A50-928BC9B8A5CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductPro.Application.Test", "ProductPro.Application.Test\ProductPro.Application.Test.csproj", "{BF53CBAE-752D-4DBF-A2A6-093920945016}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductPro.Infrastructure.Test", "ProductPro.Infrastructure.Test\ProductPro.Infrastructure.Test.csproj", "{BBDF7DDD-7062-4547-8FC4-3D407ECA459A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +55,14 @@ Global
 		{EB55CC7C-6A39-44EE-9A50-928BC9B8A5CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB55CC7C-6A39-44EE-9A50-928BC9B8A5CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB55CC7C-6A39-44EE-9A50-928BC9B8A5CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF53CBAE-752D-4DBF-A2A6-093920945016}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF53CBAE-752D-4DBF-A2A6-093920945016}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF53CBAE-752D-4DBF-A2A6-093920945016}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF53CBAE-752D-4DBF-A2A6-093920945016}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBDF7DDD-7062-4547-8FC4-3D407ECA459A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBDF7DDD-7062-4547-8FC4-3D407ECA459A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBDF7DDD-7062-4547-8FC4-3D407ECA459A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBDF7DDD-7062-4547-8FC4-3D407ECA459A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +75,8 @@ Global
 		{4122C960-DF95-4489-9214-7034BE920C42} = {30329222-44B4-484F-B1A6-C777DC45071E}
 		{CC1F9E47-A057-430D-8AB4-074026172079} = {BDD9CCA2-318D-4D09-8F95-5980993D127F}
 		{EB55CC7C-6A39-44EE-9A50-928BC9B8A5CB} = {1F643DB0-E392-415E-83A7-0AF61E85B1EF}
+		{BF53CBAE-752D-4DBF-A2A6-093920945016} = {1F643DB0-E392-415E-83A7-0AF61E85B1EF}
+		{BBDF7DDD-7062-4547-8FC4-3D407ECA459A} = {1F643DB0-E392-415E-83A7-0AF61E85B1EF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E19A509C-20E6-495F-89A6-E319FB68D64E}
