@@ -16,9 +16,37 @@ namespace ProductProd.Infrastructure.Repositories
             };
         }
 
+        public async Task AddAsync(Product product)
+        {
+            products.Add(product);
+        }
+
+        public async Task DeleteAsync(Product product)
+        {
+            products.Remove(product);
+        }
+
         public async Task<IEnumerable<Product>> GetAllAsync()
         {
             return products;
+        }
+
+        public async Task<Product> GetAsync(int id)
+        {
+            return products.Where(x => x.Id == id).FirstOrDefault();
+        }
+
+        public async Task<Product> UpdateAsync(Product product)
+        {
+            var existingProduct = products.Where(x=>x.Id == product.Id).FirstOrDefault();
+            if (existingProduct != null)
+            {
+                existingProduct.ProductName = product.ProductName;
+                existingProduct.ProductDescription = product.ProductDescription;
+                existingProduct.Price = product.Price;
+            }
+
+            return existingProduct;
         }
     }
 }

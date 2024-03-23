@@ -10,7 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="6.12.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+    <PackageReference Include="Moq" Version="4.20.70" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -23,7 +26,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\ProductPro.API\ProductPro.API.csproj" />
+    <ProjectReference Include="..\ProductPro.Domain\ProductPro.Domain.csproj" />
+    <ProjectReference Include="..\ProductProd.Infrastructure\ProductProd.Infrastructure.csproj" />
+    <ProjectReference Include="..\ProjectPro.Application\ProjectPro.Application.csproj" />
   </ItemGroup>
 
 </Project>
