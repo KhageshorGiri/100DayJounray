@@ -87,6 +87,42 @@ namespace ProductProd.API.Test.Controllers
             result.Should().BeAssignableTo<OkResult>();
         }
 
+        [Fact]
+        public async Task UpdateProduct_WithUnexistingProduct_ReturnNotFound()
+        {
+            // Arrange
+            var exisgintProduct = CreateRandomProduct();
+
+            serviceStub.Setup(service => service.UpdateAsync(It.IsAny<int>(), exisgintProduct))
+                .ReturnsAsync((Product)null);
+
+            var controller = new ProductsController(serviceStub.Object, logger.Object);
+
+            // Act
+            var result = await controller.UpdateProduct(It.IsAny<int>(), exisgintProduct);
+
+            // Assert
+            Assert.Null(result.Value);
+            result.Result.Should().BeOfType<NotFoundResult>();
+        }
+
+        [Fact]
+        public async Task UpdateProduct_WithExistingProduct_ReturnUpdatedProduct()
+        {
+            // Arrange
+            var exisgintProduct = CreateRandomProduct();
+
+            var controller = new ProductsController(serviceStub.Object, logger.Object);
+
+            // Act
+            var result = await controller.UpdateProduct(exisgintProduct.Id, exisgintProduct);
+
+
+            // Assert
+            result.Should().BeAssignableTo<OkResult>();
+        }
+
+
         private Product CreateRandomProduct()
         {
             return new()
