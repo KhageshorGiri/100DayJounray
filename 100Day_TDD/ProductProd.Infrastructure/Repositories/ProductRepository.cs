@@ -1,52 +1,97 @@
-﻿using ProductPro.Domain.IRepositories;
+﻿using Microsoft.EntityFrameworkCore;
+using ProductPro.Domain.IRepositories;
 using ProductPro.Domain.Models;
+using ProductProd.Infrastructure.Data;
 
 namespace ProductProd.Infrastructure.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        List<Product> products;
-        public ProductRepository()
+        private readonly ProductProDbContext _dbContext;
+        public ProductRepository(ProductProDbContext context)
         {
-            products = new List<Product>()
-            {
-                new Product() {Id=1, ProductName = "Item 1", ProductDescription = "First Item", Price=200},
-                new Product() {Id=3, ProductName = "Item 2", ProductDescription = "Second Item", Price=400},
-                new Product() {Id=4, ProductName = "Item 4", ProductDescription = "third Item", Price=600}
-            };
+           _dbContext = context;
         }
 
         public async Task AddAsync(Product product)
         {
-            products.Add(product);
+            try
+            {
+                 _dbContext.Products.Add(product);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
         }
 
         public async Task DeleteAsync(Product product)
         {
-            products.Remove(product);
+            try
+            {
+                _dbContext.Products.Remove(product);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+           
         }
 
         public async Task<IEnumerable<Product>> GetAllAsync()
         {
-            return products;
+            try
+            {
+                return await _dbContext.Products
+                    .AsNoTracking()
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         public async Task<Product> GetAsync(int id)
         {
-            return products.Where(x => x.Id == id).FirstOrDefault();
+            try
+            {
+                var product =  await _dbContext.Products.Where(x => x.Id == id)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync();
+                if (product is null)
+                {
+                    return null;
+                }
+                return product;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         public async Task<Product> UpdateAsync(Product product)
         {
-            var existingProduct = products.Where(x=>x.Id == product.Id).FirstOrDefault();
-            if (existingProduct != null)
+            try
             {
-                existingProduct.ProductName = product.ProductName;
-                existingProduct.ProductDescription = product.ProductDescription;
-                existingProduct.Price = product.Price;
-            }
+                var existingProduct = await _dbContext.Products.Where(x => x.Id == product.Id).FirstOrDefaultAsync();
+                if (existingProduct != null)
+                {
+                    existingProduct.ProductName = product.ProductName;
+                    existingProduct.ProductDescription = product.ProductDescription;
+                    existingProduct.Price = product.Price;
+                }
 
-            return existingProduct;
+                return existingProduct;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+           
         }
     }
 }

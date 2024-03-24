@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProductPro.Domain.Models;
 using ProjectPro.Application.IServices;
-using System.Runtime.CompilerServices;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -74,5 +73,6 @@ namespace ProductPro.API.Controllers
             }
             return NotFound();
         }
+
     }
 }

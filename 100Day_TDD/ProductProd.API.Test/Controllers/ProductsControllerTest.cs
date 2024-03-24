@@ -10,91 +10,81 @@ namespace ProductProd.API.Test.Controllers
 {
     public class ProductsControllerTest
     {
+        private readonly Random rand = new Random();
+        private readonly Mock<IProductService> serviceStub = new Mock<IProductService>();
+        private readonly Mock<ILogger<ProductsController>> logger = new();
 
-        private readonly Mock<IProductService> serviceStub = new();
-        private readonly Mock<ILogger<ProductsController>> loggerStub = new();
-        private readonly Random rand = new();
-
-        // Naming Convention
         [Fact]
-        public void TestMethodName_WhatShouldHappen_ExpectedResults()
+        public async Task GetProduct_WhenUnExistingProduct_ReturnNotFound()
         {
+            // Arrange
+            serviceStub.Setup(service => service.GetAsync(It.IsAny<int>())).
+                ReturnsAsync((Product)null);
 
+            var controller = new ProductsController(serviceStub.Object, logger.Object);
+
+            // Act
+            var result = await controller.GetProduct(rand.Next(1000));
+
+            // Assert
+            Assert.Null(result.Value);
+            result.Result.Should().BeOfType<NotFoundResult>();
+        }
+
+        [Fact]
+        public async Task GetProduct_WhenExistingProduct_ReturnProduct()
+        {
+            // Arrange
+
+            var expectedProduct = CreateRandomProduct();
+
+           
+            serviceStub.Setup(service => service.GetAsync(It.IsAny<int>()))
+                .ReturnsAsync(expectedProduct);
+
+            var controller = new ProductsController(serviceStub.Object, logger.Object);
+
+            // Act
+            var result = await controller.GetProduct(It.IsAny<int>());
+
+            // Assert
+            result.Value.Should().BeEquivalentTo(expectedProduct, 
+                option => option.ComparingByMembers<Product>());
         }
 
         [Fact]
         public async Task GetAllProducts_WithExistingProducts_ReturnExpectedProducts()
         {
             // Arrange
-            var expectedProducts = new[]
-            {
-                CreateRandomProduct(), CreateRandomProduct(), CreateRandomProduct()
-            };
+            var expectedResult = new[] { CreateRandomProduct(), CreateRandomProduct(), CreateRandomProduct() };
 
             serviceStub.Setup(service => service.GetAllAsync())
-                .ReturnsAsync(expectedProducts);
+                .ReturnsAsync(expectedResult);
 
-            var controller = new ProductsController(serviceStub.Object, loggerStub.Object);
+            var controller = new ProductsController(serviceStub.Object, logger.Object);
 
             // Act
             var result = await controller.GetAllProducts();
 
             // Assert
-            result.Value.Should().BeEquivalentTo(
-                expectedProducts ,
-                option => option.ComparingByMembers<Product>());
+            result.Value.Should().NotBeNull();
+            result.Value.Should().BeEquivalentTo(expectedResult,
+                optins => optins.ComparingByMembers<Product>());
         }
 
         [Fact]
-        public async Task GetProduct_WithUnexistingItem_ReturnNotFound()
-        {
-            // Arragnge
-            serviceStub.Setup(service => service.GetAsync(It.IsAny<int>()))
-                .ReturnsAsync((Product)null);
-
-            var controller = new ProductsController(serviceStub.Object,loggerStub.Object);
-
-            // Act 
-            var result = await controller.GetProduct(rand.Next(1000));
-
-            // Assert
-            result.Result.Should().BeOfType<NotFoundResult>();
-        }
-
-        [Fact]
-        public async Task GetProduct_WithExistingProduct_ReturnExpectedproduct()
+        public async Task AddProduct_WithProductToAdd_ReturnResponseOk()
         {
             // Arrange
-            var expectedProduct = CreateRandomProduct();
-
-            serviceStub.Setup(service => service.GetAsync(It.IsAny<int>()))
-                .ReturnsAsync(expectedProduct);
-
-            var controller = new ProductsController(serviceStub.Object, loggerStub.Object);
-
-            // Act 
-            var result = await controller.GetProduct(rand.Next(100));
-
-            // Assert
-            result.Value.Should().BeEquivalentTo(expectedProduct, 
-                option=>option.ComparingByMembers<Product>());
-        }
-
-        [Fact]
-        public async Task AddProduct_WithProductToCreate_ReturnResponseOk()
-        {
-            // Arrange
-            var productToCreate = CreateRandomProduct();
-
-            var controller = new ProductsController(serviceStub.Object, loggerStub.Object);
+            var productToAdd = CreateRandomProduct();
+           
+            var controller = new ProductsController(serviceStub.Object, logger.Object);
 
             // Act
-            var result = await controller.AddProduct(productToCreate);
+            var result = await controller.AddProduct(productToAdd);
 
             // Assert
-            result.Should().BeEquivalentTo(
-                productToCreate,
-                option => option.ComparingByMembers<Product>());
+            result.Should().BeAssignableTo<OkResult>();
         }
 
         private Product CreateRandomProduct()
@@ -102,10 +92,9 @@ namespace ProductProd.API.Test.Controllers
             return new()
             {
                 Id = rand.Next(100),
-                ProductName = "Test Product",
+                ProductName = "Test Prduct",
                 ProductDescription = "Test Description",
-                Price = rand.Next(100)
-
+                Price = rand.Next(1000)
             };
         }
     }
