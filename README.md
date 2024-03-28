@@ -1,4 +1,15 @@
 # -100DayJounray
 100-day learning journey
 
-# Day 1
+# Topic 1: TDD
+  - Unit testing
+      - xUnit (Framework)
+      - Moq (Mocking)
+      - FluentAssertion (Assertion)
+      - AutoFixture (fake data generation)
+  - Integration testing
+    - webApplicationFactory
+
+# Topic 2: Logging/Tracing/Monitoring/Alerting 
+  - Serilog
+  - 
