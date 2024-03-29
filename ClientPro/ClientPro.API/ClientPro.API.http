@@ -1,0 +1,6 @@
+@ClientPro.API_HostAddress = http://localhost:5125
+
+GET {{ClientPro.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

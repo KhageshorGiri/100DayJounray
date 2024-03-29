@@ -19,7 +19,7 @@ try
     builder.Logging.ClearProviders();
     builder.Logging.AddSerilog(logger);
 
-    Log.Information("Starting web application");
+    logger.Information("Starting web application");
 
     // Add services to the container.
 
