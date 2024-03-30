@@ -18,34 +18,56 @@ namespace ClientPro.API.Controllers
 
         // GET : api/Clients
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> Get()
         {
-            return new string[] { "value1", "value2" };
+            var allClients = await _clientService.GetAllClientAsync();
+            return Ok(allClients);
         }
 
         // GET : api/Clients/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            var client = await _clientService.GetClientAsync(id);
+            if(client is null)
+            {
+                return NotFound();
+            }
+            return Ok(client);
         }
 
         // POST : api/Clients
         [HttpPost]
-        public void Post([FromBody] CreateClientDto client)
+        public async Task<IActionResult> Post([FromBody] CreateClientDto client)
         {
+            var response = await _clientService.AddAsync(client);
+            return Ok(response);
         }
 
         // PUT : api/Clients/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] UpdateClientDto client)
+        public async Task<IActionResult> Put(int id, [FromBody] UpdateClientDto client)
         {
+            var existingClient = await _clientService.GetClientAsync(id);
+            if(existingClient is null)
+            {
+                return NotFound();
+            }
+            var response = await _clientService.UpdateAsync(id, client);
+            return Ok(response);
         }
 
         // DELETE : api/Clients/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            var existingClient = await _clientService.GetClientAsync(id);
+            if (existingClient is null)
+            {
+                return NotFound();
+            }
+            var response = await _clientService.DeleteAsync(id);
+            return Ok(response);
         }
     }
 }

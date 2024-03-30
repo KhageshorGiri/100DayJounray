@@ -1,6 +1,7 @@
 ﻿using ClientPro.Domain.Entities;
 using ClientPro.Domain.IRepositories;
 using ClientPro.Infrastructure.DataContext;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClientPro.Infrastructure.Repositories
 {
@@ -14,29 +15,74 @@ namespace ClientPro.Infrastructure.Repositories
             _dbContext = context;
         }
 
-        public Task<Client> AddAsync(Client client)
+        public async Task<Client> AddAsync(Client client)
         {
-            throw new NotImplementedException();
+            using (var transaction = await _dbContext.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    _dbContext.Clients.Add(client);
+                    await _dbContext.SaveChangesAsync();
+                    await transaction.CommitAsync();
+
+                    return client;
+                }
+                catch (Exception ex)
+                {
+                    await transaction.RollbackAsync();
+                    throw;
+                }
+            }
         }
 
-        public Task<Client> DeleteAsync(int id)
+        public async Task<Client> DeleteAsync(Client client)
         {
-            throw new NotImplementedException();
+            using (var trainsaction = await _dbContext.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    _dbContext.Clients.Remove(client);
+                    await _dbContext.SaveChangesAsync();
+                    await trainsaction.CommitAsync();
+
+                    return client;
+                }
+                catch (Exception ex)
+                {
+                    await trainsaction.RollbackAsync();
+                    throw;
+                }
+            }
         }
 
-        public Task<IEnumerable<Client>> GetAllClientAsync()
+        public async Task<IEnumerable<Client>> GetAllClientAsync()
         {
-            throw new NotImplementedException();
+            return await _dbContext.Clients.AsNoTracking().ToListAsync();
         }
 
-        public Task<Client> GetClientAsync(int id)
+        public async Task<Client> GetClientAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Clients.Where(x=>x.Id == id).AsNoTracking().FirstOrDefaultAsync();
         }
 
-        public Task<Client> UpdateAsync(Client client)
+        public async Task<Client> UpdateAsync(Client client)
         {
-            throw new NotImplementedException();
+           using(var transaction = await _dbContext.Database.BeginTransactionAsync())
+           {
+                try
+                {
+                    _dbContext.Clients.Update(client);
+                    await  _dbContext.SaveChangesAsync();
+                    await transaction.CommitAsync();
+
+                    return client;
+                }
+                catch(Exception ex)
+                {
+                    await transaction.RollbackAsync();
+                    throw;
+                }
+           }
         }
     }
 }

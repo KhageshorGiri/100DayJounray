@@ -8,6 +8,6 @@ namespace ClientPro.Domain.IRepositories
         Task<Client> GetClientAsync(int id);
         Task<Client> AddAsync(Client client);
         Task<Client> UpdateAsync(Client client);
-        Task<Client> DeleteAsync(int id);
+        Task<Client> DeleteAsync(Client client);
     }
 }
