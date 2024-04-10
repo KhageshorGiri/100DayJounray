@@ -12,4 +12,5 @@
 
 # Topic 2: Logging/Tracing/Monitoring/Alerting 
   - Serilog
-  - 
+  - Seq for centralized logging
+  - Grafana and Prometheus for monitoring
