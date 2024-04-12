@@ -1,3 +1,4 @@
+using BackGrounds.JOBS.BackgroundServices;
 using BackGrounds.JOBS.HostedServices;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +20,7 @@ builder.Services.Configure<HostOptions>(option =>
     option.ServicesStopConcurrently = false;
 });
 
-builder.Services.AddHostedService<TestHostServiceJobs>();
+builder.Services.AddHostedService<TestbackgroundJobs>();
 
 var app = builder.Build();
 
