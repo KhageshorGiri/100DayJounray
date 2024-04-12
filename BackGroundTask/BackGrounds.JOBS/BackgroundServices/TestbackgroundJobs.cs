@@ -11,7 +11,7 @@ namespace BackGrounds.JOBS.BackgroundServices
             {
                 GenerateFile();
 
-                // Wait for one minute before generating the next file
+                // Wait for one minute before generating the next files
                 await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
             }
           

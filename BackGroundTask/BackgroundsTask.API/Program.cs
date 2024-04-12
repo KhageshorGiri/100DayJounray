@@ -20,7 +20,7 @@ builder.Services.Configure<HostOptions>(option =>
     option.ServicesStopConcurrently = false;
 });
 
-builder.Services.AddHostedService<TestbackgroundJobs>();
+builder.Services.AddHostedService<ExampleHostedLifeCycleService>();
 
 var app = builder.Build();
 

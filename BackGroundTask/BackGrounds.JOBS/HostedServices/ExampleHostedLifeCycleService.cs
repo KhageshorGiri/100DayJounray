@@ -1,39 +1,47 @@
 ﻿using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace BackGrounds.JOBS.HostedServices
 {
-    internal class ExampleHostedLifeCycleService : IHostedLifecycleService
+    public class ExampleHostedLifeCycleService : IHostedLifecycleService
     {
-        public Task StartingAsync(CancellationToken cancellationToken)
+        private readonly ILogger<ExampleHostedLifeCycleService> _logger;
+
+        public ExampleHostedLifeCycleService(ILogger<ExampleHostedLifeCycleService> logger)
         {
-            throw new NotImplementedException();
+            _logger = logger;
         }
 
-        public Task StartAsync(CancellationToken cancellationToken)
+        public async Task StartingAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await Task.Delay(5000);
+            _logger.LogInformation("Starting IHosted Service");
         }
 
-        public Task StartedAsync(CancellationToken cancellationToken)
+        public async Task StartAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            _logger.LogInformation("Start IHosted Service");
+        }
+
+        public async Task StartedAsync(CancellationToken cancellationToken)
+        {
+            _logger.LogInformation("Started IHosted Service");
         }
 
 
-
-        public Task StoppingAsync(CancellationToken cancellationToken)
+        public async Task StoppingAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            _logger.LogInformation("Stopinging IHosted Service");
         }
 
-        public Task StopAsync(CancellationToken cancellationToken)
+        public async Task StopAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            _logger.LogInformation("Stop IHosted Service");
         }
 
-        public Task StoppedAsync(CancellationToken cancellationToken)
+        public async Task StoppedAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            _logger.LogInformation("Stopped IHosted Service");
         }
 
        
