@@ -1,3 +1,5 @@
+using BackGrounds.JOBS.HostedServices;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +8,18 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+// Bg Task Registraiton
+
+// Configuration
+builder.Services.Configure<HostOptions>(option =>
+{
+    option.ServicesStartConcurrently = true;
+    option.ServicesStopConcurrently = false;
+});
+
+builder.Services.AddHostedService<TestHostServiceJobs>();
 
 var app = builder.Build();
 
