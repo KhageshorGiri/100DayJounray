@@ -14,3 +14,8 @@
   - Serilog
   - Seq for centralized logging
   - Grafana and Prometheus for monitoring
+
+# Topic 3: Background Task Scheduling
+  - IHosted Service
+  - Background Service
+  - Hangfire
