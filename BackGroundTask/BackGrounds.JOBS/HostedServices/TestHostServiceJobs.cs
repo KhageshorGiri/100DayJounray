@@ -14,8 +14,9 @@ namespace BackGrounds.JOBS.HostedServices
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            await Task.Delay(1000);
-            _logger.LogInformation("Hosted Sevice Started.");
+            _logger.LogInformation("Hosted Sevice Started. {0}", DateTime.Now);
+
+            await Task.Delay(TimeSpan.FromSeconds(5), cancellationToken);
         }
 
         public async Task StopAsync(CancellationToken cancellationToken)
