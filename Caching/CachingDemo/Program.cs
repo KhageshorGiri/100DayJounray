@@ -15,6 +15,9 @@ builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddMemoryCache();
 
+// add response caching service
+builder.Services.AddResponseCaching();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,6 +30,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseResponseCaching();
 
 app.MapControllers();
 

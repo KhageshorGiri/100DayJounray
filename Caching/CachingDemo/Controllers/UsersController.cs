@@ -12,11 +12,13 @@ namespace CachingDemo.Controllers
     {
         private readonly IUserService _userService;
         private readonly IUserChace _userChace;
+        private readonly ILogger<UsersController> _logger;
 
-        public UsersController(IUserService userService, IUserChace userChace)
+        public UsersController(IUserService userService, IUserChace userChace, ILogger<UsersController> logger)
         {
             _userService = userService;
             _userChace = userChace;
+            _logger = logger;
 
         }
 
@@ -35,10 +37,13 @@ namespace CachingDemo.Controllers
         }
 
         // GET api/<UsersController>/5
+        [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any)]
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            _logger.LogInformation("Logging message");
+            var client = await _userService.GetUserByIdAsync(id);
+            return Ok(client);
         }
 
         // POST api/<UsersController>

@@ -10,15 +10,20 @@ namespace CachingDemo.Services
         {
             _users = new List<User>()
             {
-                new User{FullName = "Khageshor Giri", Email="girikhageshor@gmail.com"},
-                new User{FullName = "Binod Giri", Email="giribinod@gmail.com"},
-                new User{FullName = "Test User", Email="testuser@gmail.com"}
+                new User{Id = 1, FullName = "Khageshor Giri", Email="girikhageshor@gmail.com"},
+                new User{Id = 2, FullName = "Binod Giri", Email="giribinod@gmail.com"},
+                new User{Id = 3, FullName = "Test User", Email="testuser@gmail.com"}
             };
         }
 
         public async Task<IEnumerable<User>> GetAllUserAsync()
         {
             return _users;
+        }
+
+        public async Task<User?> GetUserByIdAsync(int id)
+        {
+            return _users.Where(user => user.Id == id).FirstOrDefault();
         }
     }
 }
