@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CachingDemo.Interfaces;
+using CachingDemo.Models;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +10,28 @@ namespace CachingDemo.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        private readonly IUserService _userService;
+        private readonly IUserChace _userChace;
+
+        public UsersController(IUserService userService, IUserChace userChace)
+        {
+            _userService = userService;
+            _userChace = userChace;
+
+        }
+
         // GET: api/<UsersController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> Get()
         {
-            return new string[] { "value1", "value2" };
+            var allUsers = await _userChace.GetUserFromCache();
+
+            if(allUsers is null)
+            {
+                allUsers = await _userService.GetAllUserAsync();
+                await _userChace.AdduserToCache(allUsers);
+            }
+            return Ok(allUsers);
         }
 
         // GET api/<UsersController>/5
