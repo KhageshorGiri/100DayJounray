@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+option csharp_namespace = "TODOgRpcService";
+
+package todoit;
+
+service ToDoItems {
+	// Create
+	rpc CreateTodoItem (CreateTodoItemRequese) returns (CreateTodoItemResponse) {}
+	
+	// Get List
+	rpc GetAllTodoItems (GetAllRequest) returns (GetAllResponse) {}
+
+	// Get Single Value
+	rpc GetTodoItem (ReadToDoRequest) returns (ReadToDoResponse) {}
+
+	// Update
+	rpc UpdateTodoItem (UpdateToDoRequest) returns (UpdateToDoResponse) {}
+
+	// Delete
+	rpc DeleteTodoItemm (DeleteToDoRequest) returns (DeleteToDoResponse) {}
+}
+
+message CreateTodoItemRequese {
+	string item_name = 1;
+	string description = 2;
+}
+
+message CreateTodoItemResponse{
+	int32 id = 1; 
+}
+
+
+message ReadToDoRequest {
+    int32 id = 1;
+}
+
+message ReadToDoResponse {
+    int32 id = 1;
+    string item_name = 2;
+    string description = 3;
+    string status = 4;
+}
+
+message GetAllRequest {}
+
+message GetAllResponse {
+   repeated ReadToDoResponse to_do = 1;
+}
+
+message UpdateToDoRequest {
+    int32 id = 1;
+    string item_name = 2;
+    string description = 3;
+    string status = 4;
+}
+  
+message UpdateToDoResponse {
+    int32 id = 1;
+}
+  
+message DeleteToDoRequest {
+    int32 id = 1;
+}
+  
+message DeleteToDoResponse {
+    int32 id = 1;
+}
