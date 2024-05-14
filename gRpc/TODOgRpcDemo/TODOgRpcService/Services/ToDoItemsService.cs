@@ -70,11 +70,13 @@ namespace TODOgRpcService.Services
             return await Task.FromResult(response);
         }
 
-
         public override async Task<UpdateToDoResponse> UpdateTodoItem(UpdateToDoRequest request, ServerCallContext context)
         {
             if (request.Id <= 0)
                 throw new RpcException(new Status(StatusCode.InvalidArgument, "Please provide valid item id."));
+
+            if(request.ItemName == string.Empty || request.Description == string.Empty || request.Status == string.Empty)
+                throw new RpcException(new Status(StatusCode.InvalidArgument, "Please provide valid item data for update."));
 
             var todoItem = await _dbContext.ToDoItems.FirstOrDefaultAsync(t => t.Id == request.Id);
 
