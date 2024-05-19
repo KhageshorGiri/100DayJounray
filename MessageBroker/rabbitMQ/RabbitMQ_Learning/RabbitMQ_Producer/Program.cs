@@ -3,6 +3,7 @@ using RabbitMQ_Producer;
 
 Console.WriteLine("Hello, World!");
 Console.WriteLine("Publising Message...");
-var rabbitMqService = new SingleProducerConsumerWithQueue();
-rabbitMqService.Publish();
+
+// Add rbbitMq publisher code here
+
 Console.WriteLine("Message Published.");

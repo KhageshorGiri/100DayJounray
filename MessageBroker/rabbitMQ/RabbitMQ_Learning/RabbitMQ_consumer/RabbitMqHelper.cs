@@ -9,9 +9,9 @@ namespace RabbitMQ_consumer
     {
     }
 
-    public class SingleProducerConsumerWithQueue
+    public static class SingleProducerConsumerWithQueue
     {
-        public void Consume()
+        public static void Consume()
         {
             var factory = new ConnectionFactory
             {

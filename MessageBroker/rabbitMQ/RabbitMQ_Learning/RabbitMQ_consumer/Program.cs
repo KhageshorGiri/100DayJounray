@@ -3,8 +3,9 @@ using RabbitMQ_consumer;
 
 Console.WriteLine("Hello, World!");
 Console.WriteLine("Consuming Message...");
-var rabbitMqService = new SingleProducerConsumerWithQueue();
-rabbitMqService.Consume();
+
+// Add rabbitMq consumner code
+
 Console.WriteLine("Message Consumed.");
 
 Console.ReadLine();

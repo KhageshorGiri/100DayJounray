@@ -9,9 +9,9 @@ namespace RabbitMQ_Producer
     {
     }
 
-    public class SingleProducerConsumerWithQueue
+    public static class SingleProducerConsumerWithQueue
     {
-        public void Publish()
+        public static void Publish()
         {
             var factory = new ConnectionFactory
             {
@@ -30,7 +30,7 @@ namespace RabbitMQ_Producer
             var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
 
             // publish message
-            channel.BasicPublish(exchange: "", routingKey: "", basicProperties: null, body: body);
+            channel.BasicPublish(exchange: "", routingKey: "SinglePublisherConsumer_queue", basicProperties: null, body: body);
         }
     }
 
@@ -55,11 +55,11 @@ namespace RabbitMQ_Producer
             int count = 0;
             while (count <= 10)
             {
-                var message = new { Name = "Message Producer", Message = "hello form producer" };
+                var message = new { Name = "Message Producer", Message = $"hello form producer {count}" };
                 var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
 
                 // publish message
-                channel.BasicPublish(exchange: "", routingKey: "", basicProperties: null, body: body);
+                channel.BasicPublish(exchange: "", routingKey: "SingleProducerMultipleConsumner", basicProperties: null, body: body);
 
                 count++;
                 Thread.Sleep(1000);
