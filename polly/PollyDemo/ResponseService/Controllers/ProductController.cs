@@ -7,15 +7,21 @@ namespace ResponseService.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        [HttpGet("[action]/{id:int}")]
-        public async Task<IActionResult> GetResponse(int id)
+        //[HttpGet("[action]/{id:int}")]
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetResponse([FromQuery] int id)
         {
             var ranodm = new Random();
 
-            if(ranodm.Next(1, 100) >= id)
-                return BadRequest(StatusCodes.Status400BadRequest);
+            if (ranodm.Next(1, 100) >= id)
+            {
+                Console.WriteLine("Failure --> Not able to server cilient request.");
+                return StatusCode(StatusCodes.Status500InternalServerError);
 
-            return Ok();
+            }
+
+            Console.WriteLine("Success --> Done.");
+            return Ok(new List<string> { "Item1", "Item2", "Item3"});
         }
 
 

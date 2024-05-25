@@ -1,6 +1,13 @@
+using RequestService.Policies;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+// can add retry policy along httpreuest
+builder.Services.AddHttpClient();
+
+builder.Services.AddScoped<ClientPolicy>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
