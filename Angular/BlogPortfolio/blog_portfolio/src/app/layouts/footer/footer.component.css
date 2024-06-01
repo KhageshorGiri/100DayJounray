@@ -1,0 +1,13 @@
+.site-logo {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+}
+
+.footer-section {
+    padding: 1.3rem;
+    background-color: var(--navbar-footer-color);
+}
+
+.nav-link{
+   font-size: 0.8rem;
+}

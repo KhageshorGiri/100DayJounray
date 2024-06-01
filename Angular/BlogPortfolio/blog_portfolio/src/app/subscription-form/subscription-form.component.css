@@ -1,0 +1,14 @@
+
+.subscription-card{
+    background-color: var(--secondary-color);
+    padding: 1rem;
+   
+}
+
+.subs-text{
+    width: 30%;
+}
+
+.btn-sub{
+    border: none;
+}

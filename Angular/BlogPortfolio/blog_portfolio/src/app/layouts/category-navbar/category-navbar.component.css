@@ -1,0 +1,9 @@
+.category-nav{
+    margin-top: 7rem;
+    background-color: var(--navbar-footer-color);
+    height: 4rem;
+}
+
+.nav-link{
+    font-size: 0.9rem;
+}
