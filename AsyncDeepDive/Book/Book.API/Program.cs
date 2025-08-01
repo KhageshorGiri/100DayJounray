@@ -1,4 +1,6 @@
+using Book.API;
 using Book.API.DbContexts;
+using Book.API.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,8 @@ builder.Services.AddRouting();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IBookREpository, BookREpository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -26,5 +30,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapControllers();
+
+app.AddSeedData();
 
 app.Run();

@@ -9,6 +9,7 @@ public class BooksDbContext : DbContext
     {
     }
 
+    public DbSet<Author> Authors { get; set; }
     public DbSet<Books> Books { get; set; }
 
 
