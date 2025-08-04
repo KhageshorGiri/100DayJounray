@@ -1,0 +1,12 @@
+/*
+    Load Testing is primarly converned wiht assessing the current performance of your system
+    in terms of concurrent users or requests per second.
+    When you want to understand if your system is meeting the performance goals, this is the type fo test
+    you will run.
+
+    Run a load test to:
+    - Assess the current performance of your system under typical and peak load
+    - Make sure you are continously metting the performance standards as you male changes to your system
+
+    Can be used to simultate a normal day in your business
+*/
