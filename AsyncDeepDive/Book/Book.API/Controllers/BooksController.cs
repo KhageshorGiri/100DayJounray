@@ -1,4 +1,6 @@
-﻿using Book.API.Services;
+﻿using Book.API.Entities;
+using Book.API.Models;
+using Book.API.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Book.API.Controllers;
@@ -8,16 +10,19 @@ namespace Book.API.Controllers;
 public class BooksController : ControllerBase
 {
     private readonly IBookREpository _bookREpository;
-    public BooksController(IBookREpository bookREpository)
+    private readonly IUriService _uriService;
+    public BooksController(IBookREpository bookREpository, IUriService uriService)
     {
         _bookREpository = bookREpository;
+        _uriService = uriService;
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAllBooks()
+    public async Task<IActionResult> GetAllBooks([FromQuery] PaginationQuery query)
     {
-        var allBooks = await _bookREpository.GetBooksAsync();
-        return Ok(allBooks);
+        var allBooks = await _bookREpository.GetBooksAsync(query);
+
+        return Ok(new PaginatedApiResponse<IEnumerable<Books>>(allBooks));
     }
 
     [HttpGet("{id}")]

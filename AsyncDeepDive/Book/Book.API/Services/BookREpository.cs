@@ -1,5 +1,6 @@
 ﻿using Book.API.DbContexts;
 using Book.API.Entities;
+using Book.API.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Book.API.Services;
@@ -19,10 +20,12 @@ public class BookREpository : IBookREpository
                 .ToList();
     }
 
-    public async Task<IEnumerable<Books>> GetBooksAsync()
+    public async Task<IEnumerable<Books>> GetBooksAsync(PaginationQuery query)
     {
+        var skip = (query.PageNumber - 1) * query.PageSize;
         return await _dbContext.Books
                  .Include(b => b.Author)
+                 .Skip(skip).Take(query.PageSize)
                  .ToListAsync();
     }
 
