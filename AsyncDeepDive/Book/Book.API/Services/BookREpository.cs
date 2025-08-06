@@ -20,13 +20,10 @@ public class BookREpository : IBookREpository
                 .ToList();
     }
 
-    public async Task<IEnumerable<Books>> GetBooksAsync(PaginationQuery query)
+    public async Task<PagedList<Books>> GetBooksAsync(BookResourceDto query)
     {
-        var skip = (query.PageNumber - 1) * query.PageSize;
-        return await _dbContext.Books
-                 .Include(b => b.Author)
-                 .Skip(skip).Take(query.PageSize)
-                 .ToListAsync();
+        var collection = _dbContext.Books.AsNoTracking();
+        return await PagedList<Books>.CreateAsync(collection, query.PageNumber, query.PageSize);
     }
 
     public async Task<Books> GetBooksAsync(int id)

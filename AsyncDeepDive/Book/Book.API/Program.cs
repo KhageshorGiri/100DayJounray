@@ -17,7 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IBookREpository, BookREpository>();
-builder.Services.AddScoped<IUriService, UriService>();
+//builder.Services.AddScoped<IUriService, UriService>();
 
 var app = builder.Build();
 

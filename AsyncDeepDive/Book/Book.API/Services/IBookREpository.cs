@@ -6,6 +6,6 @@ namespace Book.API.Services;
 public interface IBookREpository
 {
     IEnumerable<Books> GetBooks();
-    Task<IEnumerable<Books>> GetBooksAsync(PaginationQuery query);
+    Task<PagedList<Books>> GetBooksAsync(BookResourceDto query);
     Task<Books> GetBooksAsync(int id);
 }
