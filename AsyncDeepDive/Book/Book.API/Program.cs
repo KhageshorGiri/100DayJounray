@@ -18,7 +18,9 @@ builder.Services.AddRouting();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddResponseCompression(option => { option.EnableForHttps = true; });
+builder.Services.AddResponseCompression(option => { 
+    option.EnableForHttps = true; // Enabling this is risky in terms of security, need to study about this
+});
 builder.Services.Configure<BrotliCompressionProviderOptions>(option =>
 {
     option.Level = CompressionLevel.Fastest;

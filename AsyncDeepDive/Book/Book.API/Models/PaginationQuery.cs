@@ -12,4 +12,5 @@ public class PaginationQuery
         get => _pageSize;
         set => _pageSize = (value > _maxPageSize) ? _maxPageSize : value;
     }
+    public string OrderBy { get; set; } = "Name";
 }
