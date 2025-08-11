@@ -44,7 +44,7 @@ public static class IQueryableExtensions
                 orderByString = orderByString +
                                 (string.IsNullOrWhiteSpace(orderByString) ? string.Empty : ", ")
                                 + destinationProperty
-                                + (orderByDesc ? "descending" : "ascending");
+                                + (orderByDesc ? " descending" : " ascending");
             }
         }
         return source.OrderBy(orderByString);

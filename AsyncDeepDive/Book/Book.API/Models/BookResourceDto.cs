@@ -4,6 +4,7 @@ namespace Book.API.Models;
 
 public class BookResourceDto : PaginationQuery
 {
+    public string OrderBy { get; set; } = "Title";
 }
 
 public class BookDto

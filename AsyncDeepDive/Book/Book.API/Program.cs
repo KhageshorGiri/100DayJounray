@@ -1,5 +1,6 @@
 using Book.API;
 using Book.API.DbContexts;
+using Book.API.Helpers;
 using Book.API.Services;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,7 @@ builder.Services.Configure<BrotliCompressionProviderOptions>(option =>
 });
 
 builder.Services.AddScoped<IBookREpository, BookREpository>();
+builder.Services.AddScoped<IPropertyMappingService, PropertyMappingService>();
 //builder.Services.AddScoped<IUriService, UriService>();
 
 var app = builder.Build();
