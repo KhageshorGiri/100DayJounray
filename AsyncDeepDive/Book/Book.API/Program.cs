@@ -27,6 +27,9 @@ builder.Services.Configure<BrotliCompressionProviderOptions>(option =>
     option.Level = CompressionLevel.Fastest;
 });
 
+builder.Services.AddResponseCaching();
+builder.Services.AddOutputCache();
+
 builder.Services.AddScoped<IBookREpository, BookREpository>();
 builder.Services.AddScoped<IPropertyMappingService, PropertyMappingService>();
 //builder.Services.AddScoped<IUriService, UriService>();
@@ -45,6 +48,9 @@ app.UseHttpsRedirection();
 app.MapControllers();
 
 app.UseResponseCompression();
+
+app.UseResponseCaching();
+app.UseOutputCache();
 
 app.AddSeedData();
 

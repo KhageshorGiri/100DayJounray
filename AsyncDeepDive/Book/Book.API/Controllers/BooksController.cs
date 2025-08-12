@@ -2,6 +2,7 @@
 using Book.API.Models;
 using Book.API.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OutputCaching;
 using System.Text.Json;
 
 namespace Book.API.Controllers;
@@ -17,6 +18,8 @@ public class BooksController : ControllerBase
     }
 
     [HttpGet(Name = "GetAllBooks")]
+    [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Client, NoStore = false)]
+    //[OutputCache(Duration = 60, NoStore = false)]
     public async Task<IActionResult> GetAllBooks([FromQuery] BookResourceDto query)
     {
         var allBooks = await _bookREpository.GetBooksAsync(query);
