@@ -17,4 +17,8 @@
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.6.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Book.Legcay\Book.Legcay.csproj" />
+  </ItemGroup>
+
 </Project>

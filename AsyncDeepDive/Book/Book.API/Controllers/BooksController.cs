@@ -53,7 +53,15 @@ public class BooksController : ControllerBase
         return Ok(book);
     }
 
-    [HttpGet("/sync")]
+
+    [HttpGet("badcode/{id}")]
+    public async Task<IActionResult> GetAllBooks_BadCode(int id)
+    {
+        var book = await _bookREpository.GetBooksAsync_BadCode(id);
+        return Ok(book);
+    }
+
+    [HttpGet("sync")]
     public IActionResult GetAllBooksDefault()
     {
         var allBooks = _bookREpository.GetBooks();

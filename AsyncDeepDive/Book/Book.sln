@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Book.API", "Book.API\Book.API.csproj", "{6D71CE4F-4FBA-4F91-90DB-69F03726A913}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Book.Legcay", "Book.Legcay\Book.Legcay.csproj", "{A5828235-A43B-4862-B68E-617678E8A598}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{6D71CE4F-4FBA-4F91-90DB-69F03726A913}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D71CE4F-4FBA-4F91-90DB-69F03726A913}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D71CE4F-4FBA-4F91-90DB-69F03726A913}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5828235-A43B-4862-B68E-617678E8A598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5828235-A43B-4862-B68E-617678E8A598}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5828235-A43B-4862-B68E-617678E8A598}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5828235-A43B-4862-B68E-617678E8A598}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
