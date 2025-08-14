@@ -47,9 +47,9 @@ public class BooksController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetAllBooks(int id)
+    public async Task<IActionResult> GetAllBooks(int id, CancellationToken cancellationToken)
     {
-        var book = await _bookREpository.GetBooksAsync(id);
+        var book = await _bookREpository.GetBooksAsync(id, cancellationToken);
         return Ok(book);
     }
 

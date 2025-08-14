@@ -37,10 +37,13 @@ public class BookREpository : IBookREpository
         return await PagedList<Books>.CreateAsync(collection, query.PageNumber, query.PageSize);
     }
 
-    public async Task<Books> GetBooksAsync(int id)
+    public async Task<Books> GetBooksAsync(int id, CancellationToken cancellationToken)
     {
-        return await  _dbContext.Books
-                .Include(b => b.Author)
-                .FirstOrDefaultAsync(b=>b.Id == id);
+        var books = new Books();
+        books = await _dbContext.Books
+             .Include(b => b.Author)
+             .FirstOrDefaultAsync(b => b.Id == id, cancellationToken: cancellationToken);
+
+        return books;
     }
 }
