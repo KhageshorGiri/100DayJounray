@@ -4,11 +4,17 @@ using Book.API.Helpers;
 using Book.API.Services;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using System.IO.Compression;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .CreateLogger();
 
 builder.Services.AddDbContext<BooksDbContext>(option =>
     option.UseSqlite(builder.Configuration.GetConnectionString("BookSqlConnectionString")));
@@ -44,7 +50,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.MapControllers();
 
 app.UseResponseCompression();
