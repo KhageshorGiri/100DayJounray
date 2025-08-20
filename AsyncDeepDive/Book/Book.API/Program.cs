@@ -16,6 +16,8 @@ Log.Logger = new LoggerConfiguration()
     .Enrich.FromLogContext()
     .CreateLogger();
 
+builder.Host.UserSerilog()
+
 builder.Services.AddDbContext<BooksDbContext>(option =>
     option.UseSqlite(builder.Configuration.GetConnectionString("BookSqlConnectionString")));
 
