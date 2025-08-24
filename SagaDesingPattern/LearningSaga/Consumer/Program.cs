@@ -1,3 +1,6 @@
+using Consumer;
+using MassTransit;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -5,6 +8,21 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+builder.Services.AddMassTransit(config =>
+{
+    config.AddConsumer<OrderCOnsumer>();
+    config.UsingRabbitMq((ctx, cfg) =>
+    {
+        cfg.Host("amqp://guest:guest@localhost:5672");
+
+        cfg.ReceiveEndpoint("order-queue", c =>
+        {
+            c.ConfigureConsumer<OrderCOnsumer>(ctx);
+        });
+    });
+});
 
 var app = builder.Build();
 
