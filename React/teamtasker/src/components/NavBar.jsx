@@ -29,21 +29,6 @@ const NavBar = () => {
                   Home
                 </a>
               </li>
-              <li className="nav-item px-3">
-                <a className="nav-link" href="#">
-                  Features
-                </a>
-              </li>
-              <li className="nav-item px-3">
-                <a className="nav-link" href="#">
-                  Pricing
-                </a>
-              </li>
-              <li className="nav-item px-3">
-                <a className="nav-link" href="#">
-                  About
-                </a>
-              </li>
             </ul>
           </div>
         </div>
