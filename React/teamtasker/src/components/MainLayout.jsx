@@ -27,7 +27,7 @@ export default function MainLayout() {
 
         <NavBar/>
         
-        <div className="flex-1 overflow-auto px-3 py-2">
+        <div className="flex-1 overflow-auto px-4 py-3">
           <Outlet/>
         </div>
       </div>

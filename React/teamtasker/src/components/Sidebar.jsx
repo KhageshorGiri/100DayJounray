@@ -11,9 +11,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
     const fetchNavigation = async () => {
       try {
         const links = await navigationService.getNavigationLinks('admin');
-        console.log(links);
         setMenuItems(links);
-        console.log(menuItems);
       } catch (error) {
         console.error("Failed to fetch navigation links: ", error);
       } finally {
@@ -37,7 +35,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       {/* Sidebar */}
       <div
         className={`
-            fixed lg:static inset-y-0 z-50 w-64 bg-gray-800 dark;bg-gray-900 text-white h-screen
+            fixed lg:static inset-y-0 z-50 w-64 bg-gray-800 dark:bg-gray-900 text-white h-screen
             p-4 transform transition-transform duration-300 ease-in-out
             ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
         `}
@@ -56,7 +54,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           {loading ? (
             <div className="text-center text-gray-400">Loading...</div>
           ) : (
-            menuItems.map((item) => {
+            menuItems.map((item) => (
               <Link
                 key={item.id}
                 to={item.path}
@@ -69,8 +67,8 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
               >
                 <span>{item.icon}</span>
                 {item.label}
-              </Link>;
-            })
+              </Link>
+            ))
           )}
         </nav>
       </div>
