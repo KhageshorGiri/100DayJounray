@@ -7,7 +7,7 @@ import Sidebar from "./Sidebar";
 export default function MainLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
     return (
-     <div className="flex- h-screen bg-gray-100 dark:bg-gray-900">
+     <div className="flex h-screen bg-gray-100 dark:bg-gray-900">
       <Sidebar
       isOpen={sidebarOpen}
       setIsOpen={setSidebarOpen}
@@ -27,7 +27,7 @@ export default function MainLayout() {
 
         <NavBar/>
         
-        <div className="flex-1 overflow-auto">
+        <div className="flex-1 overflow-auto px-3 py-2">
           <Outlet/>
         </div>
       </div>
