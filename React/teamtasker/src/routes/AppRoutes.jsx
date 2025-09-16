@@ -3,6 +3,7 @@ import ProjectPage from "../pages/ProjectPage";
 import MainLayout from "../components/MainLayout";
 import Tasks from "../pages/Tasks";
 import Reports from "../pages/Reports";
+import CreateProject from "../pages/CreateProjectPage"
 
 const AppRoutes = () => {
   return (
@@ -12,6 +13,7 @@ const AppRoutes = () => {
         <Route path="projects" element={<ProjectPage />} />
         <Route path="tasks" element={<Tasks />} />
         <Route path="reports" element={<Reports />} />
+        <Route path="/create-project" element={<CreateProject/>} />
       </Route>
     </Routes>
   );

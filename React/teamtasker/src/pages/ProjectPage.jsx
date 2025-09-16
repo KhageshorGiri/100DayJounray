@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { fakeDbService } from "../fakeDbService";
 import Table from "../components/Table";
+import { useNavigate } from "react-router-dom";
 
 const ProjectPage = () => {
   const [projects, setProjects] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const allProjects = fakeDbService.getProjects();
@@ -32,7 +34,17 @@ const ProjectPage = () => {
   return (
     <div>
       <h1 className="text-xl fond-bold mb-4">Projects</h1>
-      <Table columns={columns} data={projects}></Table>
+      <div className="flex justify-end pb-4 pe-5">
+        <button
+          onClick={() => navigate("/create-project")}
+          className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition"
+        >
+          Add New Project
+        </button>
+      </div>
+      <div>
+        <Table columns={columns} data={projects}></Table>
+      </div>
     </div>
   );
 };
