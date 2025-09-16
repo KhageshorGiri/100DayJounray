@@ -1,0 +1,38 @@
+{
+  "projects": [
+    { "id": 1, "name": "Project Alpha", "description": "E-commerce platform build", "ownerId": 101 },
+    { "id": 2, "name": "Project Beta", "description": "Internal HR system", "ownerId": 102 },
+    { "id": 3, "name": "Project Gamma", "description": "Mobile banking app", "ownerId": 103 },
+    { "id": 4, "name": "Project Delta", "description": "Social media analytics tool", "ownerId": 104 },
+    { "id": 5, "name": "Project Omega", "description": "Healthcare appointment scheduler", "ownerId": 105 },
+    { "id": 6, "name": "Project Orion", "description": "Cloud file storage service", "ownerId": 106 },
+    { "id": 7, "name": "Project Phoenix", "description": "AI-powered chatbot", "ownerId": 107 },
+    { "id": 8, "name": "Project Titan", "description": "Project management SaaS", "ownerId": 108 },
+    { "id": 9, "name": "Project Nova", "description": "Learning management system", "ownerId": 109 },
+    { "id": 10, "name": "Project Horizon", "description": "Smart home IoT platform", "ownerId": 110 },
+    { "id": 11, "name": "Project Zenith", "description": "Real-time stock trading app", "ownerId": 111 },
+    { "id": 12, "name": "Project Aurora", "description": "Weather forecasting platform", "ownerId": 112 },
+    { "id": 13, "name": "Project Atlas", "description": "Logistics and delivery tracker", "ownerId": 113 },
+    { "id": 14, "name": "Project Nimbus", "description": "Video conferencing tool", "ownerId": 114 },
+    { "id": 15, "name": "Project Vega", "description": "Fitness tracking app", "ownerId": 115 }
+  ],
+  "tasks": [
+    { "id": 1, "title": "Design UI mockups", "description": "Create wireframes for main pages", "assignedTo": 201, "projectId": 1 },
+    { "id": 2, "title": "Setup database schema", "description": "Define ERD and create migrations", "assignedTo": 202, "projectId": 1 },
+    { "id": 3, "title": "Implement login API", "description": "JWT authentication with refresh tokens", "assignedTo": 203, "projectId": 2 },
+    { "id": 4, "title": "Payment gateway integration", "description": "Integrate with Stripe and PayPal", "assignedTo": 204, "projectId": 3 },
+    { "id": 5, "title": "Analytics dashboard", "description": "Build charts and metrics page", "assignedTo": 205, "projectId": 4 },
+
+    { "id": 6, "title": "Setup cloud storage buckets", "description": "Configure AWS S3 for file uploads", "assignedTo": 206, "projectId": 6 },
+    { "id": 7, "title": "Chatbot NLP model training", "description": "Use GPT model for responses", "assignedTo": 207, "projectId": 7 },
+    { "id": 8, "title": "Create project board UI", "description": "Implement Kanban-style board", "assignedTo": 208, "projectId": 8 },
+    { "id": 9, "title": "Course content upload feature", "description": "Allow teachers to upload materials", "assignedTo": 209, "projectId": 9 },
+    { "id": 10, "title": "IoT device pairing", "description": "Support BLE pairing for smart devices", "assignedTo": 210, "projectId": 10 },
+
+    { "id": 11, "title": "Implement stock ticker API", "description": "Real-time WebSocket for stock prices", "assignedTo": 211, "projectId": 11 },
+    { "id": 12, "title": "Integrate weather API", "description": "Pull real-time data from OpenWeather", "assignedTo": 212, "projectId": 12 },
+    { "id": 13, "title": "Delivery tracking map", "description": "Live GPS tracking of couriers", "assignedTo": 213, "projectId": 13 },
+    { "id": 14, "title": "Implement video call rooms", "description": "WebRTC-based conferencing", "assignedTo": 214, "projectId": 14 },
+    { "id": 15, "title": "Fitness progress charts", "description": "Weekly summary with graphs", "assignedTo": 215, "projectId": 15 }
+  ]
+}
